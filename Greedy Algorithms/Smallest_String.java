@@ -19,7 +19,6 @@ public class Smallest_String {
             }
             totalchar--;
         }
-
         return sb.toString();
     }
 

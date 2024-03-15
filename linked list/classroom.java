@@ -1,7 +1,8 @@
 import java.util.LinkedList;
+
 public class classroom {
     public static void main(String[] args) {
-        // create for only objects 
+        // create for only objects
         LinkedList<Integer> ll = new LinkedList<>();
 
         // add
@@ -12,7 +13,7 @@ public class classroom {
         // 0->1->2
         System.out.println(ll);
 
-        // remove 
+        // remove
 
         ll.removeLast();
         ll.removeFirst();
