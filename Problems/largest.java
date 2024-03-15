@@ -24,8 +24,8 @@ public class largest {
     }
 
     public static void main(String[] args) {
-        String s = "foo";
-        String t = "bar";
+        String s = "food";
+        String t = "good";
         System.out.println(c(s, t));
     }
 }
