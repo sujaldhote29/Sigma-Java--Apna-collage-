@@ -5,7 +5,7 @@ public class rev_num {
         Stack<Integer> s = new Stack<>();
         while (n > 0) {
             s.push(n % 10);
-            n=n/10;
+            n = n / 10;
         }
         while (!s.isEmpty()) {
             System.out.print(s.pop());
