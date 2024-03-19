@@ -2,7 +2,8 @@ import java.util.*;
 public class palind {
     public static boolean check(String str){
         int n = str.length(); 
-        str = str.toLowerCase();
+        str = str.toUpperCase();
+        System.out.println(str);
         for (int i = 0; i < n/2; i++) {
             if (str.charAt(i)!=str.charAt(n-i-1)) {
                 return false;
