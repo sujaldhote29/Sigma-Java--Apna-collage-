@@ -133,7 +133,6 @@ public class linked {
     public int helper(Node head, int key) {
         if (head == null) {
             return -1;
-
         }
 
         if (head.data == key) {
@@ -145,14 +144,11 @@ public class linked {
         if (idx == -1) {
             return -1;
         }
-
         return idx + 1;
     }
-
     public int recSearch(int key) {
         return helper(head, key);
     }
-
     public void reverse() {
         Node prev = null;
         Node curr = tail = head;
@@ -163,9 +159,7 @@ public class linked {
             prev = curr;
             curr = next;
         }
-
         head = prev;
-
     }
 
     public void deleteNthFromEnd(int n) {
@@ -241,152 +235,151 @@ public class linked {
         return true;
     }
 
-
-    public static boolean isCycle(){
+    public static boolean isCycle() {
         Node slow = head;
         Node fast = head;
-        while (fast!=null && fast.next != null) {
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
-            if (slow==fast) {
+            if (slow == fast) {
                 return true; // cycle exist
             }
         }
         return false; // cycle doesnt exist
     }
 
-        public static void removeCycle(){
-            // detect cycle  
+    public static void removeCycle() {
+        // detect cycle
 
-            Node slow = head;
-            Node fast = head;
-            boolean cycle = false;
-            while (fast!=null && fast.next != null) {
-                slow = slow.next;
-                fast = fast.next.next;
-                if (slow==fast) {
-                    cycle = true;
-                    break;
-                }
+        Node slow = head;
+        Node fast = head;
+        boolean cycle = false;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                cycle = true;
+                break;
             }
-            if (cycle==false) {
-                return ;
-            }
-            // find meeting point 
-            slow = head;
-            Node prev = null;
-            while (slow!=fast) {
-                prev = fast;
-                slow = slow.next;
-                fast = fast.next;
+        }
+        if (cycle == false) {
+            return;
+        }
+        // find meeting point
+        slow = head;
+        Node prev = null;
+        while (slow != fast) {
+            prev = fast;
+            slow = slow.next;
+            fast = fast.next;
 
-            }
-
-            // remove cycle
-
-            prev.next = null;
         }
 
-        private Node getMid(){
-            Node slow = head;
-            Node fast = head.next;
+        // remove cycle
 
-            while (fast!=null && fast.next != null) {
-                slow = slow.next;
-                fast = fast.next.next;
-            }
-            return slow;
+        prev.next = null;
+    }
+
+    private Node getMid() {
+        Node slow = head;
+        Node fast = head.next;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
+        return slow;
+    }
 
-
-        private Node merge(Node head1 , Node head2){
-            Node mergedLinked = new Node(-1);
-            Node temp = mergedLinked;
-            while (head1!=null && head.next!=null) {
-                if (head1.data<=head2.data) {
-                    temp.next = head1;
-                    head1 = head1.next;
-                    temp = temp.next;
-                }else{
-                    temp = head2;
-                    head2 = head2.next;
-                    temp= temp.next;
-                }
-            }
-            while (head1!=null) {
+    private Node merge(Node head1, Node head2) {
+        Node mergedLinked = new Node(-1);
+        Node temp = mergedLinked;
+        while (head1 != null && head.next != null) {
+            if (head1.data <= head2.data) {
                 temp.next = head1;
                 head1 = head1.next;
-                    temp = temp.next;
-            }
-
-            while (head2!=null) {
-                temp.next = head2;
+                temp = temp.next;
+            } else {
+                temp = head2;
                 head2 = head2.next;
-                    temp = temp.next;
-            }
-
-            return mergedLinked.next;
-        }
-        public Node mergeSort(Node head){
-            if (head==null || head.next == null) {
-                return head;
-            }
-            // find mid
-            Node mid = getMid();
-            Node rightHead = mid.next;
-             
-            // left and right MS
-             Node newLeft  = mergeSort(head);
-            Node newRight = mergeSort(rightHead);
-
-            // merge
-
-            return merge(newLeft,newRight);
-        }
-
-
-        public void zigZag(){
-            // find mid 
-            Node slow = head;
-            Node fast = head.next;
-            
-            while (fast!=null && fast.next != null) {
-                slow = slow.next;
-                fast = fast.next.next;
-            }
-            Node mid = slow;
-
-            //reverse 2nd half
-
-            Node curr = mid.next;
-            mid.next = null;
-
-            Node prev = null;
-            Node next;
-
-            while (curr !=null) {
-                next = curr.next;
-                curr.next = prev;
-                prev = curr;
-                curr = next;
-            }
-
-            Node left = head;
-            Node right = prev;
-            Node nextL , nextR;
-
-            // alternate merge
-
-            while (left !=null &&right!=null) {
-                nextL = left.next;
-                left.next = right;
-                nextR = right.next;
-                right.next = nextL;
-
-                left = nextL;
-                right = nextR;
+                temp = temp.next;
             }
         }
+        while (head1 != null) {
+            temp.next = head1;
+            head1 = head1.next;
+            temp = temp.next;
+        }
+
+        while (head2 != null) {
+            temp.next = head2;
+            head2 = head2.next;
+            temp = temp.next;
+        }
+
+        return mergedLinked.next;
+    }
+
+    public Node mergeSort(Node head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        // find mid
+        Node mid = getMid();
+        Node rightHead = mid.next;
+
+        // left and right MS
+        Node newLeft = mergeSort(head);
+        Node newRight = mergeSort(rightHead);
+
+        // merge
+
+        return merge(newLeft, newRight);
+    }
+
+    public void zigZag() {
+        // find mid
+        Node slow = head;
+        Node fast = head.next;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        Node mid = slow;
+
+        // reverse 2nd half
+
+        Node curr = mid.next;
+        mid.next = null;
+
+        Node prev = null;
+        Node next;
+
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        Node left = head;
+        Node right = prev;
+        Node nextL, nextR;
+
+        // alternate merge
+
+        while (left != null && right != null) {
+            nextL = left.next;
+            left.next = right;
+            nextR = right.next;
+            right.next = nextL;
+
+            left = nextL;
+            right = nextR;
+        }
+    }
+
     public static void main(String[] args) {
 
         linked l = new linked();
@@ -425,31 +418,29 @@ public class linked {
         // ll.deleteNthFromEnd(3);
         // ll.print();
 
-    //     ll.print();
-    //     System.out.println(ll.checkPalindrome());
-    //
-    
-    // head = new Node(1);
-    // Node temp = new Node(2);
-    // head.next = temp;
-    // head.next.next = new Node(3);
-    // head.next.next.next = temp;
+        // ll.print();
+        // System.out.println(ll.checkPalindrome());
+        //
 
-    // System.out.println(isCycle());
+        // head = new Node(1);
+        // Node temp = new Node(2);
+        // head.next = temp;
+        // head.next.next = new Node(3);
+        // head.next.next.next = temp;
 
-    // removeCycle();
-    // System.out.println(isCycle());
+        // System.out.println(isCycle());
 
-      
-    
-    // l.addFirst(1);
-    // l.addFirst(2);
-    // l.addFirst(3);
-    // l.addFirst(4);
-    // l.addFirst(5);
-    // l.print();
-    // l.head = l.mergeSort(l.head);
-    // l.print();
+        // removeCycle();
+        // System.out.println(isCycle());
+
+        // l.addFirst(1);
+        // l.addFirst(2);
+        // l.addFirst(3);
+        // l.addFirst(4);
+        // l.addFirst(5);
+        // l.print();
+        // l.head = l.mergeSort(l.head);
+        // l.print();
 
         l.addLast(1);
         l.addLast(2);
@@ -461,6 +452,6 @@ public class linked {
         l.print();
         l.zigZag();
         l.print();
-    
-}
+
+    }
 }
