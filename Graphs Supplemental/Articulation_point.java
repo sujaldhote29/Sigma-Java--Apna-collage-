@@ -36,7 +36,7 @@ public class Articulation_point {
     public static void Dfs(ArrayList<Edge> graph[], int curr, int par, int dt[], int low[], int time, boolean visit[]) {
         visit[curr] = true;
         dt[curr] = low[curr] = ++time;
-    
+
         int children = 0;
         for (int i = 0; i < graph[curr].size(); i++) {
             Edge e = graph[curr].get(i);
@@ -47,8 +47,9 @@ public class Articulation_point {
             if (!visit[neig]) {
                 Dfs(graph, neig, curr, dt, low, time, visit);
                 low[curr] = Math.min(low[curr], low[neig]);
-                
-                // Check if the subtree rooted at 'neig' has a connection to an ancestor of 'curr'
+
+                // Check if the subtree rooted at 'neig' has a connection to an ancestor of
+                // 'curr'
                 if (low[neig] >= dt[curr] && par != -1) {
                     System.out.println("AP : " + curr);
                 }
@@ -62,7 +63,6 @@ public class Articulation_point {
             System.out.println("AP : " + curr);
         }
     }
-    
 
     public static void getAp(ArrayList<Edge> graph[], int V) {
         int dt[] = new int[V];
