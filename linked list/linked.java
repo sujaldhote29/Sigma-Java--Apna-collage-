@@ -146,9 +146,11 @@ public class linked {
         }
         return idx + 1;
     }
+
     public int recSearch(int key) {
         return helper(head, key);
     }
+
     public void reverse() {
         Node prev = null;
         Node curr = tail = head;
